@@ -5,9 +5,25 @@ const app = express();
 const PORT = 8000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Hi this is Home Page");
+});
+
+app.use((req, res, next) => {
+  const date = new Date();
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  const val = `\n${date.toLocaleDateString(options)} ${req.method}: ${req.url}`;
+  fs.appendFile("./log.txt", val, (err, data) => {
+    if (err) console.log(err);
+    next();
+  });
 });
 
 // Send a HTML res when /users
