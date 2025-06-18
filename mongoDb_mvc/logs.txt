@@ -1,0 +1,4 @@
+18/5/2025	 GET:	 /api/users 
+18/5/2025	 POST:	 /api/users 
+18/5/2025	 PATCH:	 /api/users 
+18/5/2025	 DELETE:	 /api/users 
