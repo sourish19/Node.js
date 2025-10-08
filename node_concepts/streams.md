@@ -24,3 +24,5 @@ Move on to the next chunk
 
 This linux comand will generate a file of around 100mb with random text - increase the number to make it more big 
 tr -dc "A-Za-z0-9 " < /dev/urandom | fold -w100 | head -n 1000000 > bigfile.txt
+
+https://medium.com/@vedanshdwivedi0/streams-in-nodejs-6e84f566b411
