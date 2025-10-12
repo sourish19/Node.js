@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import limiter from "./ratelimiter";
 
 const app = express();
 
@@ -29,6 +30,9 @@ const corsConfig = () => {
 };
 
 app.use(corsConfig());
+
+// Rate limiting 
+app.use(limiter)
 
 app.get("/", (req, res) => {
   res.send("Home Page");
