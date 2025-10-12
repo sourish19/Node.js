@@ -1,7 +1,7 @@
 import express from "express";
 import axios from "axios";
 
-import redis from "./redisInstance";
+import client from "./client";
 
 const options = {
   method: "GET",
@@ -12,7 +12,7 @@ const options = {
 const app = express();
 
 app.get("/", async (req, res) => {
-  const value = await redis.get("totalPageCount",(err, result) => {
+  const value = await client.get("totalPageCount",(err, result) => {
     if (err) console.error(err);
     console.log(result);
   });
@@ -29,7 +29,8 @@ app.get("/", async (req, res) => {
   );
 
   // Set the value in redis
-  await redis.set("totalPageCount", totalPageCount);
+  await client.set("totalPageCount", totalPageCount);
+  await client.expire("totalPageCount",1 * 24 * 60 * 60); // 1 day
 
   return res.json({ totalPageCount });
 });
