@@ -28,7 +28,7 @@ app.get("/", async (req, res) => {
     0
   );
 
-  chacheMap.pageCount = pageCount;
+  chacheMap.pageCount = pageCount; 
 
   return res.json({ pageCount });
 });
